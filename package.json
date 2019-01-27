@@ -1,15 +1,29 @@
 {
   "name": "payrolldeductionapi",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app.js"
   },
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.4",
-    "mongoose": "^5.4.7",
-    "nodemon": "^1.18.9"
-  }
+    "mongoose": "^5.4.7"
+  },
+  "nodemon": "^1.18.9",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tambriakemp/Payroll.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tambriakemp/Payroll/issues"
+  },
+  "homepage": "https://github.com/tambriakemp/Payroll#readme",
+  "description": ""
 }
+

@@ -1,8 +1,11 @@
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
+
 
 
 app.use(express.json());
+app.use(bodyParser.json());
 
 // app.get('/', function(req, res) {
 //     res.send('hello');
@@ -22,7 +25,7 @@ app.use('/employees', employeesRouter);
 app.use('/dependents', dependentsRouter); 
 
 
-
+ 
 // Database setup
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
