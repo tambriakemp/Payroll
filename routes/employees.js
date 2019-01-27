@@ -16,16 +16,16 @@ router.get('/', function(req, res) {
 });
 
 //Get single employee
-router.get(':id', function(req, res) {
+// router.get(':id', function(req, res) {
   
-  Employee.findById(req.params.id)
-    .then(Employee => res.json(employee.serialize()))
-    .catch(err => {
-          console.error(err); 
-          res.status(500).json({message: 'Internal Server Error'})
-        });
+//   Employee.findById(req.params.id)
+//     .then(Employee => res.json(employee.serialize()))
+//     .catch(err => {
+//           console.error(err); 
+//           res.status(500).json({message: 'Internal Server Error'})
+//         });
 
-});
+// });
 
 
 //Add Employee 
