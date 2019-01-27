@@ -11,19 +11,9 @@
     "express": "^4.16.4",
     "mongoose": "^5.4.7"
   },
-  "nodemon": "^1.18.9",
-  "devDependencies": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tambriakemp/Payroll.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/tambriakemp/Payroll/issues"
-  },
-  "homepage": "https://github.com/tambriakemp/Payroll#readme",
-  "description": ""
+
+  "devDependencies": {
+      "nodemon": "^1.18.9"
+  }
 }
 
