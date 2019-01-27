@@ -11,7 +11,18 @@ const schema =  mongoose.Schema({
       
 });
 
+schema.methods.serialize = function() {
+    return {
+      id: this._id,
+      firstName: this.firstName,
+      lastName: this.lastName,
+      dependentType: this.dependentType,
+    //   employee: this.employee
 
+    //   address: {address.this.street},
+
+    };
+  };
 
 const Dependent = mongoose.model('Dependent', schema, 'dependents');
 

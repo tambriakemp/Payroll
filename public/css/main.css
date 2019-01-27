@@ -1,0 +1,161 @@
+body {
+    background: #fafafc;
+    box-sizing: border-box;
+    color: #292929;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    margin: 0;
+}
+
+nav {
+    margin: 20px 30px 0 205px;
+}
+
+main {
+    overflow: hidden;
+}
+
+button {
+    color: white;
+    background-color: #4b5ff6;
+    padding: 10px 35px;
+    border-radius: 5px;
+    border: none;
+    font-size: 15px;
+    margin: 15px;
+}
+#btn-add-dep {
+    float: right;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: inline-block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    margin-right: 30px;
+}
+
+li a:hover {
+    color: #4b5ff6;
+}
+.employee {
+    list-style-type: none;
+    display: block;
+}
+
+input {
+    padding: 12px 20px;
+    border: none;
+    border-bottom: 1px solid #c5c5c5;
+}
+input[name=first-name],
+input[name=last-name],
+input[name=job-title] {
+    width: 300px;
+}
+
+input[name=street] {
+    width: 500px;
+}
+.active {
+    color: #4b5ff6;
+    border-bottom: 2px solid #4b5ff6;
+}
+
+.header {
+    background-color: white;
+}
+
+.right-side {
+    float: right;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.left-side {
+    float: left;
+    display: inline-block;
+    margin-top: 10px;
+    width: 300px;
+}
+
+.list-of-emp p {
+    margin-top: 25px;
+}
+
+.add-emp-header p {
+    margin-top: 25px;
+}
+
+.row-pad {
+    background-color: white;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin: 20px 15px;
+}
+
+.list-of-emp {
+    background-color: white;
+}
+
+.side-nav {
+    display: none;
+}
+
+.inline-img {
+    float: left;
+    margin: 16px 20px;
+}
+
+.employees {
+    margin: 40px;
+}
+
+.add-emp-form {
+    margin: 50px 70px;
+}
+
+.topbar-right {
+    /* float: right;
+    display: inline-block; */
+    margin-top: 20px;
+  }
+
+  .icon {
+    width: 18px;
+    height: auto;
+    margin-left: 20px;
+  }
+  
+  .user-account-name {
+    margin-right: 20px;
+    display: inline-block;
+  }
+
+@media only screen and (min-width: 768px) {
+    .side-nav {
+        display: initial;
+        height: 100vh;
+        background-color: white;
+        overflow-x: hidden;
+        padding-top: 20px;
+    }
+    .main-content {
+        padding: 30px 40px;
+    }
+}
