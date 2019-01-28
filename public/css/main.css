@@ -28,6 +28,7 @@ button {
 #btn-add-dep {
     float: right;
 }
+
 ul {
     list-style-type: none;
     margin: 0;
@@ -51,11 +52,23 @@ li a {
 li a:hover {
     color: #4b5ff6;
 }
-.employee {
-    list-style-type: none;
-    display: block;
-}
 
+.list-of-all-emp {
+    list-style-type: none;
+    /* display: block; */
+}
+.list-of-all-emp li{
+    width: 100%;
+}
+.get-single-employee {
+    float: right;
+}
+.delete-single-employee {
+    float: right;
+}
+.employee { 
+    float: left;
+}
 input {
     padding: 12px 20px;
     border: none;

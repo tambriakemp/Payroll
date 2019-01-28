@@ -20,8 +20,8 @@
     <header class="row header">
         <nav>
             <ul>
-                <li><a href="#" class="active">Employees</a></li>
-                <li><a href="#" id="add-employee-link">Add Employee</a></li>
+                <li><a href="/dash.html" class="active">Employees</a></li>
+                <li><a href="#" class="add-emp-button">Add Employee</a></li>
             </ul>
         </nav>
         <div class="topbar-right">
@@ -33,7 +33,7 @@
     </header>
     <main class="row">
         <div class="col-xl-1 side-nav">
-            <img src="images/dashboard/home-icon.svg" alt="employee icon" class="nav-icon">
+            <a href="/dash.html"><img src="images/dashboard/home-icon.svg" alt="employee icon" class="nav-icon"></a>
             <img src="images/dashboard/ded-icon.svg" alt="deduction icon" class="nav-icon">
         </div>
         <div class="col-xl-11 main-content">
@@ -48,7 +48,7 @@
                     </div>
 
                     <div class="right-side">
-                        <button id="add-emp-button">Add</button>
+                        <button class="add-emp-button">Add</button>
                     </div>
                 </div>
                 <div id="add-emp-content container"></div>
@@ -57,6 +57,7 @@
                 <div class="list-of-emp container">
                     <img src="images/dashboard/user-icon.svg" class="inline-img">
                     <p>List of all employees</p>
+                    <ul class="list-of-all-emp"></ul>
                 </div>
             </div>
         </div>
