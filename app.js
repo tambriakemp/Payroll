@@ -14,34 +14,27 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 // Routes
-const usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index');
 const employeesRouter = require('./routes/employees');
-const dependentsRouter = require('./routes/dependents');
-
 
 
 // Request to HTTP
-app.use('/users', usersRouter); 
+app.use('/', indexRouter);
 app.use('/employees', employeesRouter); 
-app.use('/dependents', dependentsRouter); 
-
 
 app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-
- 
 // Database setup
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const configDB = require('./config/database.js');
+mongoose.set('debug', true);
 mongoose.connect(configDB.url, { useNewUrlParser: true });
 
-const {user} = require('./models/user');
 const {employee} = require('./models/employee');
-const {dependent} = require('./models/dependent');
-
 
 
 // Server

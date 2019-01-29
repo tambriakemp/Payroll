@@ -3,7 +3,6 @@
 const mongoose = require('mongoose');
 
 const EmployeeSchema =  mongoose.Schema({
-    // _id: {type: String, required: true},
     firstName: {type: String, required: true},
     lastName: String,
     jobTitle: String,
@@ -12,11 +11,8 @@ const EmployeeSchema =  mongoose.Schema({
     city: String, 
     state: String, 
     zipCode: Number,
-    numberOfDependents: Number,
-    // dependents: [{depFirst: 
-    dependents: [{type: mongoose.Schema.Types.ObjectId, ref: 'dependent'}] ,
-    salary: Number
-    // urlString: String
+    dep: [{depFirstName:String,depLastName:String,relationship:String}]
+
     
 });
 
@@ -30,7 +26,9 @@ EmployeeSchema.methods.serialize = function() {
       street: this.street,
       city: this.city,
       state: this.state,
-      zipCode: this.zipCode
+      zipCode: this.zipCode,
+      dep: this.dep
+      
     };
 };
 

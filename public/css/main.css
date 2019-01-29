@@ -3,7 +3,7 @@ body {
     box-sizing: border-box;
     color: #292929;
     font-family: 'Raleway', sans-serif;
-    font-weight: 600;
+    /* font-weight: 600; */
     font-size: 15px;
     margin: 0;
 }
@@ -25,6 +25,12 @@ button {
     font-size: 15px;
     margin: 15px;
 }
+
+h4 {
+    font-weight: 900;
+    margin-bottom: 0;
+}
+
 #btn-add-dep {
     float: right;
 }
@@ -57,23 +63,66 @@ li a:hover {
     list-style-type: none;
     /* display: block; */
 }
-.list-of-all-emp li{
+
+.list-of-all-emp li {
     width: 100%;
 }
+
 .get-single-employee {
     float: right;
 }
+
 .delete-single-employee {
     float: right;
 }
-.employee { 
+
+.employee {
     float: left;
 }
+
+.single-employee {
+    margin: 0 80px;
+}
+
+table {
+    margin: 10px 0 50px;
+}
+
+.dependent-table th {
+    background-color: #fafafc;
+    border: 1px solid #fafafc;
+    text-align: left;
+    padding: 8px;
+    margin-top: 50px;
+}
+
+.dependent-table td {
+    padding-left: 15px;
+}
+
+.employee-table th {
+    background-color: #fafafc;
+    border: 1px solid #fafafc;
+    text-align: left;
+    padding: 8px;
+    margin-top: 50px;
+}
+
+.employee-table td {
+    padding-left: 15px;
+}
+
+.dependent-form {
+    margin-left: 80px;
+    padding: 0 8px;
+}
+
 input {
     padding: 12px 20px;
     border: none;
     border-bottom: 1px solid #c5c5c5;
 }
+
 input[name=first-name],
 input[name=last-name],
 input[name=job-title] {
@@ -83,6 +132,7 @@ input[name=job-title] {
 input[name=street] {
     width: 500px;
 }
+
 .active {
     color: #4b5ff6;
     border-bottom: 2px solid #4b5ff6;
@@ -143,22 +193,16 @@ input[name=street] {
     margin: 50px 70px;
 }
 
-.topbar-right {
-    /* float: right;
-    display: inline-block; */
-    margin-top: 20px;
-  }
-
-  .icon {
+.icon {
     width: 18px;
     height: auto;
     margin-left: 20px;
-  }
-  
-  .user-account-name {
+}
+
+.user-account-name {
     margin-right: 20px;
     display: inline-block;
-  }
+}
 
 @media only screen and (min-width: 568px) {
     .side-nav {
@@ -167,6 +211,7 @@ input[name=street] {
         background-color: white;
         overflow-x: hidden;
         padding-top: 20px;
+        text-align: center;
     }
     .main-content {
         padding: 30px 40px;
