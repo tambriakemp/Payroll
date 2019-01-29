@@ -2,25 +2,38 @@
 
 const mongoose = require('mongoose');
 
-const schema =  mongoose.Schema({
+const EmployeeSchema =  mongoose.Schema({
     // _id: {type: String, required: true},
     firstName: {type: String, required: true},
     lastName: String,
-    title: String,
+    jobTitle: String,
     phoneNumber: Number,
-    address: {street: String, 
-        address2: String, 
-        city: String, 
-        state: String, 
-        zipCode: Number},
+    street: String, 
+    city: String, 
+    state: String, 
+    zipCode: Number,
     numberOfDependents: Number,
-    dependents: [{type: mongoose.Schema.Types.ObjectId, ref: 'dependents'}] ,
-    salary: Number 
+    // dependents: [{depFirst: 
+    dependents: [{type: mongoose.Schema.Types.ObjectId, ref: 'dependent'}] ,
+    salary: Number
+    // urlString: String
     
 });
 
+EmployeeSchema.methods.serialize = function() {
+      return {
+      id: this._id,
+      firstName: this.firstName,
+      lastName: this.lastName,
+      phoneNumber: this.phoneNumber,
+      jobTitle: this.jobTitle,
+      street: this.street,
+      city: this.city,
+      state: this.state,
+      zipCode: this.zipCode
+    };
+};
 
-
-const Employee = mongoose.model('Employee', schema, 'employees');
+const Employee = mongoose.model('Employee', EmployeeSchema, 'employees');
 
 module.exports = { Employee }; 

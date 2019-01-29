@@ -160,7 +160,7 @@ input[name=street] {
     display: inline-block;
   }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 568px) {
     .side-nav {
         display: initial;
         height: 100vh;

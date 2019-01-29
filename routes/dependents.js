@@ -37,28 +37,47 @@ router.get('/:id', function (req, res) {
 
 //Add Dependents ============================================
 router.post("/", (req, res) => {
-  // const requiredFields = ["firstName", "lastName", "jobTitle","phoneNumber"];
-  // for (let i = 0; i < requiredFields.length; i++) {
-  //   const field = requiredFields[i];
-  //   if (!(field in req.body)) {
-  //     const message = `Missing \`${field}\` in request body`;
-  //     console.error(message);
-  //     return res.status(400).send(message);
-  //   }
-  // }
 
-  Dependent.create({
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    dependentType: req.body.dependentType,
-  })
-    .then(dependent => res.status(201).json(dependent.serialize()))
-    .catch(err => {
-      console.error(err);
-      res.status(500).json({ message: "Internal server error" });
-    });
+
+
+
+  let dependent = new Dependent();
+    dependent.firstName   = req.body.depFirstName,
+    dependent.lastName    = req.body.depLastName,
+    dependent.relationship    = req.body.relationship
+
+
+     dependent.save((err) => {
+      // Check for error
+      if (err) {
+          // If there is an error redirect user to the error page
+          console.log("this is the dependent: " + dependent);
+          // Send them to error page
+          res.redirect('/error');
+      } else {
+      User.findOne({_id:req.body.employee})
+        .then((user)=>{
+            user.dependents.push(dependent._id);
+            return user.save();
+         })
+        //  .then(() =>res.redirect('/dash.html'))};
+
+
+          //find id of request employee
+
+      //     Employee.findOne({_id:req.body.employee})
+      //     .then((dependent)=>{
+      //         employee.dependents.push(dependent._id);
+      //         return dependent.save();
+      //      })
+      //     //  .then(() =>res.redirect('/dash.html'))};
+      //       //find id of request employee
+      //       console.log(dependent);
+            // res.redirect('/dash.html');
+      }
+   });
+    
 });
-
 
 
 //Delete Employee ============================================

@@ -11,30 +11,31 @@ function getEmployees() {
     fetch(`${PAYROLL_BASE_URL}/employees`)
         .then(res => res.json())
         .then(json => displayEmployees(json))
-        // .catch(e => {
-        //     document.getElementById('latest-emp').innerHTML = errorMessage
-        // })
+    // .catch(e => {
+    //     document.getElementById('latest-emp').innerHTML = errorMessage
+    // })
 }
 
 function displayEmployees(employee) {
-        for (let i = 0; i < 10; i++) {
-           
-            $('.list-of-all-emp').append(
+    for (let i = 0; i < employee.length; i++) {
+
+        $('.list-of-all-emp').append(
             `<li class="employee" role="list">
                 ${employee[i].firstName} ${employee[i].lastName}
                 <button class="get-single-employee" id="view-${employee[i]._id}">View Profile</button>
                 <button class="delete-single-employee" id="delete-${employee[i]._id}">Delete</button>
             </li>
-            `)    
-            // Route button to function called when click on view profile passing in the id from the db 
-            document.getElementById('view-' + employee[i]._id).addEventListener('click', (event) => {
-                getSingleEmployee(employee[i]._id);
-            });
-            document.getElementById('delete-' + employee[i]._id).addEventListener('click', (event) => {
-                deleteSingleEmployee(employee[i]._id);
-            });
-        }
-    
+            `)
+        // Route button to function called when click on view profile passing in the id from the db 
+        document.getElementById('view-' + employee[i]._id).addEventListener('click', (event) => {
+            getSingleEmployee(employee[i]._id);
+        });
+        document.getElementById('delete-' + employee[i]._id).addEventListener('click', (event) => {
+            deleteSingleEmployee(employee[i]._id);
+        });
+
+    }
+
 }
 
 //Get Single Employee ============================================
@@ -42,9 +43,9 @@ function getSingleEmployee(id) {
     fetch(`${PAYROLL_BASE_URL}/employees/` + id)
         .then(res => res.json())
         .then(json => getSingleEmployeeView(json))
-        //.catch(e => {
-            //document.getElementById('.emp-profile').innerHTML = errorMessage
-        //});
+    //.catch(e => {
+    //document.getElementById('.emp-profile').innerHTML = errorMessage
+    //});
 }
 
 function getSingleEmployeeView(employee) {
@@ -52,30 +53,33 @@ function getSingleEmployeeView(employee) {
 
     $('.list-of-all-emp').html('');
 
-        $('.list-of-emp').append(`<p><span class="strong">Name:</span> ${employee.firstName}</p> ${employee.firstName}</p>
-                <p><span class="strong">Job Title:</span>${employee.firstName}</p>
+    $('.list-of-emp').append(`<p><span class="strong">Employee:</span> ${employee.firstName} ${employee.lastName}</p>
+                <p><span class="strong">Job Title:</span>${employee.jobTitle}</p>
                 <p><span class="strong">Phone Number:</span>${employee.phoneNumber}</p>
-                <p><span class="strong">Address:</span>${employee.firstName}</p>
-                <p><span class="strong">City:</span>${employee.firstName} <span class="strong">State: </span>${employee.firstName} <span class="strong">Zip Code:</span> </p>`)
-}
+                <p><span class="strong">Address:</span>${employee.street}</p>
+                <p><span class="strong">City:</span>${employee.city} <span class="strong">State: </span>${employee.state} <span class="strong">Zip Code:${employee.zipCode} </span> </p>
+                <input type="button" id="btn-add-dep" value="Add Dependent" onclick="addDependent('${employee.id}')"/>
+                `)
+                console.log(employee)
+} 
 
 //Delete Single Employee ============================================
 function deleteSingleEmployee(id) {
-    fetch(`${PAYROLL_BASE_URL}/employees/` + id, )
+    fetch(`${PAYROLL_BASE_URL}/employees/` + id)
         .then(res => res.json())
         .then(json => deleteEmployee(json))
-        //.catch(e => {
-            //document.getElementById('.emp-profile').innerHTML = errorMessage
-        //});
+    //.catch(e => {
+    //document.getElementById('.emp-profile').innerHTML = errorMessage
+    //});
 }
 function deleteEmployee(employee) {
     e.preventDefault();
-    fetch(`/api/events/${id}`, "DELETE", refreshEventsPage);
+    fetch(`/employees/${id}`, "DELETE", refreshEventsPage);
 }
 
 //Add Employee View ============================================
 function addEmployeeView() {
-    
+
     $('.add-emp-button').on('click', function (ev) {
         ev.preventDefault();
 
@@ -94,7 +98,7 @@ function addEmployeeView() {
             </p>
             <p>
                 <label for="job-title">Job Title</label>
-                <input type="text" name="jobTtle" id="job-title" placeholder="Job Title" >
+                <input type="text" name="jobTitle" id="job-title" placeholder="Job Title" >
 
                 <label for="phone-number">Phone Number</label>
                 <input type="number" name="phoneNumber" id="phone-number" placeholder="Phone Number" >
@@ -115,30 +119,27 @@ function addEmployeeView() {
                 <input type="number" name="zipCode" id="zip-code" placeholder="Zip Code"
                     >
             </p>
-            <button type="submit" class="btn-save-emp">Save Employee</button>
+            <button type="submit" class="btn-save-emp">Add Employee</button>
         </form>
-        <button type="submit" id="btn-add-dep"> Add Dependent</button><!--Need listner to show dependent form when clicked-->
 
         </div>`)
-        // document.getElementById('btn-save-emp').addEventListener('click', (event) => {
-        //     console.log('submitted');
-        // })
     })
 }
 
 //Add Dependent ============================================
-function addDependent() {
+function addDependent(id) {
 
-    $('#btn-add-dep').on('click', function (ev) {
-        ev.preventDefault();
+    // $('#btn-add-dep').on('click', function (ev) {
+        // ev.preventDefault();
 
-    
+console.log(id);
         $('.list-of-emp').append(`                            
-            <form method="POST" action="/addEmployee" id="dependentForm" class="dependent-form">
-                <label for="dependent-first-name">First Name</label>
-                <input type="text" name="first-name" id="dependent-first-name" placeholder="First Name" required>
-                <label for="dependent-last-name">Last Name</label>
-                <input type="text" name="last-name" id="dependent-last-name" placeholder="Last Name" required>
+            <form method="POST" action="/dependents" id="dependentForm" class="dependent-form">
+            <input type="hidden" name="employee" value="${id}"/>
+                <label for="depFirstName">First Name</label>
+                <input type="text" name="depFirstName" id="dependent-first-name" placeholder="First Name" required>
+                <label for="depLastName"">Last Name</label>
+                <input type="text" name="depLastName" id="dependent-last-name" placeholder="Last Name" required>
                 <label for="relationship">Relationship</label>
                 <select name="relationship">
                     <option value="spouse">Spouse</option>
@@ -147,7 +148,12 @@ function addDependent() {
 
             <button type="submit">Save</button>
     </form>    `)
-    })
+
+    //hidden input that represents the employee i am trying to attach 
+    //pass id from employee to the addDependent function 
+    //put as a inpu
+   // <input type="hidden" name="employee" value=`${employeeID}`/>
+    // })
 }
 
 
@@ -155,7 +161,7 @@ function addDependent() {
 function initApp() {
     getEmployees();
     addEmployeeView();
-    addDependent();//fix loading after html
+    // addDependent();//fix loading after html
 }
 
 
