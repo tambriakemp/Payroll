@@ -206,7 +206,6 @@ function addDependent(id) {
         console.log('put');
     });
 }
-
 function initApp() {
     getEmployees();
     addEmployeeView();
