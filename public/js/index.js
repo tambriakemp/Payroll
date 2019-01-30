@@ -135,6 +135,7 @@ function deleteEmployee(employee) {
 
 //Add Employee View ============================================
 function addEmployeeView() {
+    let counter = 0; 
 
     $('.add-emp-button').on('click', function (ev) {
         ev.preventDefault();
@@ -179,18 +180,18 @@ function addEmployeeView() {
             </p>
             <p>
                 <label for="dep">First Name</label>
-                <input type="text" name="dep[][depFirstName]" id="dependent-first-name" placeholder="First Name" required>
+                <input type="text" name="dep[${counter}][depFirstName]" id="dependent-first-name" placeholder="First Name" required>
                 <label for="depLastName">Last Name</label>
-                <input type="text" name="dep[][depLastName]" id="dependent-last-name" placeholder="Last Name" required>
+                <input type="text" name="dep[${counter}][depLastName]" id="dependent-last-name" placeholder="Last Name" required>
                 <label for="relationship">Relationship</label>
-                <select name="dep[][relationship]" id="dependent-relationship">
+                <select name="dep[${counter}][relationship]" id="dependent-relationship">
                 <option value="spouse">Spouse</option>
                 <option value="child">Child</option>
                 </select>
             <button type="submit" class="btn-save-emp">Add Employee</button>
             </p>
         </form>
-        <input type="button" id="btn-add-dep" value="Add Dependent" onclick="addDependent()"/>
+        <input type="button" id="btn-add-dep" value="Add Dependent" onclick="addDependent(${counter})"/>
 
         </div>`)
     })
@@ -200,16 +201,20 @@ function addEmployeeView() {
 }
 
 //Add Dependent ============================================
-function addDependent(id) {
-console.log(id)
+function addDependent(counter) {
+
+    let count = counter;
+     
+    count+=1;
+   console.log(count)
 
     $('#emp-add-form').append(`                            
     <label for="dep[depFirstName]">First Name</label>
-    <input type="text" name="dep[][depFirstName]" id="dependent-first-name" placeholder="First Name" required>
+    <input type="text" name="dep[${count}][depFirstName]" id="dependent-first-name" placeholder="First Name" required>
     <label for="depLastName">Last Name</label>
-    <input type="text" name="dep[][depLastName]" id="dependent-last-name" placeholder="Last Name" required>
+    <input type="text" name="dep[${count}][depLastName]" id="dependent-last-name" placeholder="Last Name" required>
     <label for="relationship">Relationship</label>
-    <select name="dep[][relationship]" id="dependent-relationship">
+    <select name="dep[${count}][relationship]" id="dependent-relationship">
     <option value="spouse">Spouse</option>
     <option value="child">Child</option>
     </select>
