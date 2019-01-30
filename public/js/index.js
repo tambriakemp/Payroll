@@ -147,7 +147,7 @@ function addEmployeeView() {
         <img src="images/dashboard/user-icon.svg" class="inline-img">
                     <p>Add Employee</p>
         <div class="add-emp-form">                           
-            <form method="POST" action="/employees">
+            <form method="POST" action="/employees" enctype='application/json' id="emp-add-form">
             <p><label for="first-name">First Name</label>
                 <input type="text" name="firstName" id="firstName" placeholder="First Name"
                     >
@@ -177,39 +177,77 @@ function addEmployeeView() {
                 <input type="number" name="zipCode" id="zip-code" placeholder="Zip Code"
                     >
             </p>
+            <p>
+                <label for="dep">First Name</label>
+                <input type="text" name="dep[][depFirstName]" id="dependent-first-name" placeholder="First Name" required>
+                <label for="depLastName">Last Name</label>
+                <input type="text" name="dep[][depLastName]" id="dependent-last-name" placeholder="Last Name" required>
+                <label for="relationship">Relationship</label>
+                <select name="dep[][relationship]" id="dependent-relationship">
+                <option value="spouse">Spouse</option>
+                <option value="child">Child</option>
+                </select>
             <button type="submit" class="btn-save-emp">Add Employee</button>
+            </p>
         </form>
+        <input type="button" id="btn-add-dep" value="Add Dependent" onclick="addDependent()"/>
 
         </div>`)
     })
+
+
+ 
 }
 
 //Add Dependent ============================================
 function addDependent(id) {
+console.log(id)
 
-   $('.list-of-emp').append(`                            
-            <form method="PUT" action="/employees" id="dependentForm" class="dependent-form">
-            <input type="hidden" name="employee" value="${id}"/>
-                <label for="dep.depFirstName">First Name</label>
-                <input type="text" name="dep.depFirstName" id="dependent-first-name" placeholder="First Name" required>
-                <label for="dep.depLastName"">Last Name</label>
-                <input type="text" name="dep.depLastName" id="dependent-last-name" placeholder="Last Name" required>
-                <label for="dep.relationship">Relationship</label>
-                <select name="dep.relationship">
-                    <option value="spouse">Spouse</option>
-                    <option value="child">Child</option>
-                </select><!--Need ability to only show child if spouse is selected...only one spouse allowed-->
+    $('#emp-add-form').append(`                            
+    <label for="dep[depFirstName]">First Name</label>
+    <input type="text" name="dep[][depFirstName]" id="dependent-first-name" placeholder="First Name" required>
+    <label for="depLastName">Last Name</label>
+    <input type="text" name="dep[][depLastName]" id="dependent-last-name" placeholder="Last Name" required>
+    <label for="relationship">Relationship</label>
+    <select name="dep[][relationship]" id="dependent-relationship">
+    <option value="spouse">Spouse</option>
+    <option value="child">Child</option>
+    </select>
+        `)
+    const $form = document.getElementById('dependentForm')
+    const $fieldName = document.getElementById('dependent-first-name')
+    const $fieldLast = document.getElementById('dependent-last-name')
+    const $fieldRelationship = document.getElementById('dependent-relationship')
 
-            <button type="submit" id="dependent-save" >Save</button>
-    </form>    `)
-    document.getElementById('dependent-save').addEventListener('click', (event) => {
-        console.log('put');
+    $form.addEventListener('submit', (event) => {
+        event.preventDefault()
+
+        const dependent = {
+            depFirstName: $fieldName.value,
+            depLastName: $fieldLast.value,
+            relationship: $fieldRelationship.value,
+        }
+
+        fetch(`/employees/${id}` , {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(dependent)
+        }).then(res => res.json())
+          .then(res => console.log(json))
+
+        console.log('Got my dependent!', dependent)
+
+        
     });
 }
+
+
+
 function initApp() {
     getEmployees();
     addEmployeeView();
 }
-
 
 $(initApp);

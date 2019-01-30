@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 
+
 const { Employee } = require('../models/employee') //import the user model
 
 // Get all Employees ============================================
@@ -37,11 +38,10 @@ router.post("/", (req, res) => {
     employee.street      = req.body.street,
     employee.city        = req.body.city,
     employee.state       = req.body.state,
-    employee.zipCode     = req.body.zipCode
+    employee.zipCode     = req.body.zipCode,
     employee.dep         = req.body.dep
-  // employee.dep.depFirstName = req.body.dep.depFirstName
-  // employee.dep.depLastName = req.body.dep.depLastName
-
+    
+ 
   employee.save((err) => {
     if (err) {
       res.redirect('/error');
@@ -52,16 +52,17 @@ router.post("/", (req, res) => {
   });
 });
 
+
 //Edit Employee ============================================
 router.put("/:id", (req, res) => {
-  console.log('employee put');
-  if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
-    const message =
-      `Request path id (${req.params.id}) and request body id ` +
-      `(${req.body.id}) must match`;
-    console.error(message);
-    return res.status(400).json({ message: message });
-  }
+  // console.log('employee put');
+  // if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
+  //   const message =
+  //     `Request path id (${req.params.id}) and request body id ` +
+  //     `(${req.body.id}) must match`;
+  //   console.error(message);
+  //   return res.status(400).json({ message: message });
+  // }
 
   const toUpdate = {};
   const updateEmployee = ["firstName", "lastName", "jobTitle", "phonenNumber", "depFirstName", "dep.depLastName", "dep.relationship" ];

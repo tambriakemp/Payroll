@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "./bin/www"
+    "start": "nodemon ./bin/www"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -12,6 +12,8 @@
     "cors": "^2.8.5",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
-    "mongoose": "^5.4.7"
+    "method-override": "^3.0.0",
+    "mongoose": "^5.4.7",
+    "nodemon": "^1.18.9"
   }
 }

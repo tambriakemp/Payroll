@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 var cors = require('cors');
 const path = require('path');
+const methodOverride = require('method-override');
 
 
 app.use(express.json());
@@ -21,6 +22,7 @@ const employeesRouter = require('./routes/employees');
 // Request to HTTP
 app.use('/', indexRouter);
 app.use('/employees', employeesRouter); 
+app.use(methodOverride('_method'));
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
