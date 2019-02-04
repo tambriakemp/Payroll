@@ -32,6 +32,6 @@ EmployeeSchema.methods.serialize = function() {
     };
 };
 
- Employee = mongoose.model('Employee', EmployeeSchema, 'employees');
+const Employee = mongoose.model('Employee', EmployeeSchema, 'employees');
 
 module.exports = { Employee }; 
