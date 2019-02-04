@@ -39,14 +39,6 @@ mongoose.connect(configDB.url, { useNewUrlParser: true });
 const {employee} = require('./models/employee');
 
 
-// Server
-// const port = process.env.PORT || 3000;
-// app.listen(port, (err) => {
-//     if (err) {
-//       console.log('Error: ', err);
-//     } else {
-//       console.log(`server listening on port:  ${port}`   );
-//     }
-//   })
+
   
 module.exports = app;  

@@ -22,15 +22,15 @@ function displayEmployees(employee) {
             `<li class="employee" role="list">
                 ${employee[i].firstName} ${employee[i].lastName}
                 <button class="get-single-employee" id="view-${employee[i]._id}">View Profile</button>
-                <button class="delete-single-employee" id="delete-${employee[i]._id}">Delete</button>
+           <!-- <button class="delete-single-employee" id="delete-${employee[i]._id}">Delete</button>-->
             </li>
             `)
         document.getElementById('view-' + employee[i]._id).addEventListener('click', (event) => {
             getSingleEmployee(employee[i]._id);
         });
-        document.getElementById('delete-' + employee[i]._id).addEventListener('click', (event) => {
-            deleteSingleEmployee(employee[i]._id);
-        });
+        // document.getElementById('delete-' + employee[i]._id).addEventListener('click', (event) => {
+        //     deleteSingleEmployee(employee[i]._id);
+        // });
 
     }
 
@@ -102,7 +102,6 @@ function getSingleEmployeeView(employee) {
                     </tr> 
                 </table>
 
-                <input type="button" id="btn-add-dep" value="Add Dependent" onclick="addDependent('${employee.id}')"/>
                </div> 
         `)
 
@@ -210,42 +209,16 @@ function addDependent(counter) {
 
     $('#emp-add-form').append(`                            
     <label for="dep[depFirstName]">First Name</label>
-    <input type="text" name="dep[${count}][depFirstName]" id="dependent-first-name" placeholder="First Name" required>
+    <input type="text" name="dep[${count}][depFirstName]" id="dependent-first-name" placeholder="First Name" >
     <label for="depLastName">Last Name</label>
-    <input type="text" name="dep[${count}][depLastName]" id="dependent-last-name" placeholder="Last Name" required>
+    <input type="text" name="dep[${count}][depLastName]" id="dependent-last-name" placeholder="Last Name" >
     <label for="relationship">Relationship</label>
     <select name="dep[${count}][relationship]" id="dependent-relationship">
     <option value="spouse">Spouse</option>
     <option value="child">Child</option>
     </select>
         `)
-    const $form = document.getElementById('dependentForm')
-    const $fieldName = document.getElementById('dependent-first-name')
-    const $fieldLast = document.getElementById('dependent-last-name')
-    const $fieldRelationship = document.getElementById('dependent-relationship')
 
-    $form.addEventListener('submit', (event) => {
-        event.preventDefault()
-
-        const dependent = {
-            depFirstName: $fieldName.value,
-            depLastName: $fieldLast.value,
-            relationship: $fieldRelationship.value,
-        }
-
-        fetch(`/employees/${id}` , {
-            method: 'PUT',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(dependent)
-        }).then(res => res.json())
-          .then(res => console.log(json))
-
-        console.log('Got my dependent!', dependent)
-
-        
-    });
 }
 
 
